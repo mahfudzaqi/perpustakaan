@@ -33,5 +33,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/logout', [SesiController::class, 'logout']);
 });
 
-Route::get('/register', [RegisterController::class, 'register']);
-Route::post('/create', [RegisterController::class, 'create']);
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register');
+

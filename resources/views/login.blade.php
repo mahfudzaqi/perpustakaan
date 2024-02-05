@@ -31,7 +31,7 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control">
                 </div>
-                <p>Belum punya akun? <a href="register">Register</a></p>
+                <p>Belum punya akun? <a href="{{ route('register') }}">Register</a></p>
                 <div class="mb-3 d-grid">
                     <button name="submit" type="submit" class="btn btn-primary">Login</button>
                 </div>
