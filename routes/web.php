@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,8 @@ Route::get('/home', function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/administrator', [AdminController::class, 'administrator'])->middleware('userAkses:administrator');
+    Route::get('/administrator', [BukuController::class, 'index'])->middleware('userAkses:administrator');
+    Route::get('/administrator/create', [BukuController::class, 'create']);
     Route::get('/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
     Route::get('/peminjam', [AdminController::class, 'peminjam'])->middleware('userAkses:peminjam');
     Route::get('/logout', [SesiController::class, 'logout']);
@@ -38,3 +40,4 @@ Route::get('/register', function () {
 })->name('register');
 Route::post('/register', [RegisterController::class, 'create'])->name('register');
 
+Route::resource('/administrator', BukuController::class);

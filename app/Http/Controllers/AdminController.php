@@ -12,7 +12,7 @@ class AdminController extends Controller
     }
 
     function administrator() {
-        return view('admin');
+        return view('book.buku');
     }
 
     function petugas() {
