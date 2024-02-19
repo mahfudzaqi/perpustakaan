@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BukuController extends Controller
 {
@@ -12,7 +13,8 @@ class BukuController extends Controller
      */
     public function index()
     {
-        return view('book.buku');
+        $data = buku::orderby('idBuku', 'asc')->paginate(2);
+        return view('book.buku')->with('data', $data);
     }
 
     /**
@@ -28,6 +30,11 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
+        Session::flash('judul', $request->judul);
+        Session::flash('penulis', $request->penulis);
+        Session::flash('penerbit', $request->penerbit);
+        Session::flash('tahunterbit', $request->tahunterbit);
+
         $request->validate([
             'judul' => 'required',
             'penulis' => 'required',
@@ -48,7 +55,7 @@ class BukuController extends Controller
         ];
 
         Buku::create($data);
-        return view('book.buku');
+        return redirect()->to('administrator')->with('success', 'Berhasil menambahkan data');
     }
     /**
      * Display the specified resource.
@@ -63,7 +70,8 @@ class BukuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = buku::where('idbuku', $id)->first();
+        return view('book.edit')->with('data', $data);
     }
 
     /**
@@ -71,7 +79,27 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'tahunterbit' => 'required'
+        ],[
+            'judul.required' => 'judul wajib di isi',
+            'penulis.required' => 'penulis wajib di isi',
+            'penerbit.required' => 'penerbit wajib di isi',
+            'tahunterbit.required' => 'tahun terbit wajib di isi'
+        ]);
+
+        $data = [
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahunterbit' => $request->tahunterbit,
+        ];
+
+        Buku::where('idbuku',$id)->update($data);
+        return redirect()->to('administrator')->with('success', 'Berhasil mengedit data');
     }
 
     /**

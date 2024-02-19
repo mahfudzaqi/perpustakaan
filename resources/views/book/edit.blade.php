@@ -2,37 +2,38 @@
 <!-- START FORM -->
 @section('konten')
     
-<form action='{{ url('administrator') }}' method='post'>
+<form action='{{ url('administrator/'.$data->idbuku) }}' method='post'>
     @csrf
     @method('put')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">
             <label for="judul" class="col-sm-2 col-form-label">Judul</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='judul' value="{{ Session::get('judul') }}" id="judul">
+                <input type="text" class="form-control" name='judul' value="{{ $data->judul }}" id="judul">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="penulis" class="col-sm-2 col-form-label">Penulis</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='penulis' value="{{ Session::get('penulis') }}" id="penulis">
+                <input type="text" class="form-control" name='penulis' value="{{ $data->penulis }}" id="penulis">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="penerbit" class="col-sm-2 col-form-label">Penerbit</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='penerbit' value="{{ Session::get('penerbit') }}" id="penerbit">
+                <input type="text" class="form-control" name='penerbit' value="{{ $data->penerbit }}" id="penerbit">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="tahunterbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='tahunterbit' value="{{ Session::get('tahunterbit') }}" id="tahunterbit">
+                <input type="text" class="form-control" name='tahunterbit' value="{{ $data->tahunterbit }}" id="tahunterbit">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="tahunterbit" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
+            <div class="col-sm-1"><a href="{{ url('administrator') }}" class="btn btn-primary">Back</a></div>
+            <div class="col-sm-1"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
         </div>
     </div>
 </form>

@@ -12,7 +12,7 @@
         
         <!-- TOMBOL TAMBAH DATA -->
         <div class="pb-3">
-          <a href='' class="btn btn-primary">+ Tambah Data</a>
+          <a href='{{ url("administrator/create") }}' class="btn btn-primary">+ Tambah Data</a>
         </div>
   
         <table class="table table-striped">
@@ -27,20 +27,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>1001</td>
-                    <td>Ani</td>
-                    <td>Ilmu Komputer</td>
-                    <td>Ilmu Komputer</td>
-                    <td>
-                        <a href='' class="btn btn-warning btn-sm">Edit</a>
-                        <a href='' class="btn btn-danger btn-sm">Del</a>
-                    </td>
-                </tr>
+                @foreach ($data as $item)    
+                    <tr>
+                        <td>{{ $item->idBuku }}</td>
+                        <td>{{ $item->judul }}</td>
+                        <td>{{ $item->penulis }}</td>
+                        <td>{{ $item->penerbit }}</td>
+                        <td>{{ $item->tahunterbit }}</td>
+                        <td>
+                            <a href='{{ url('administrator/'.$item->idBuku.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                            <a href='' class="btn btn-danger btn-sm">Del</a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
-       
-  </div>
+        {{ $data->links() }}
+    </div>
+    <div><a href="/logout" class="btn btn-sm btn-primary">Logout >></a></div>
 @endsection
-          <!-- AKHIR DATA -->
+<!-- AKHIR DATA -->
