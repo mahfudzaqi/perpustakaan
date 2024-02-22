@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::resource('/administrator', BukuController::class)->middleware('userAkses:administrator');
     Route::patch('administrator/{id}', [BukuController::class, 'update'])->name('administrator.update');
-    Route::get('/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
+    Route::resource('/petugas', PetugasController::class)->middleware('userAkses:petugas');
+    Route::patch('petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
     Route::get('/peminjam', [AdminController::class, 'peminjam'])->middleware('userAkses:peminjam');
     Route::get('/logout', [SesiController::class, 'logout']);
 });
