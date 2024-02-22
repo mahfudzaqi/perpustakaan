@@ -13,7 +13,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $data = buku::orderby('idBuku', 'asc')->paginate(2);
+        $data = Buku::orderBy('idBuku', 'asc')->paginate(3);
         return view('book.buku')->with('data', $data);
     }
 
@@ -30,6 +30,7 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
+        session::flash('idBuku', $request->id);
         Session::flash('judul', $request->judul);
         Session::flash('penulis', $request->penulis);
         Session::flash('penerbit', $request->penerbit);
@@ -48,6 +49,7 @@ class BukuController extends Controller
         ]);
 
         $data = [
+            'idBuku' => $request->id,
             'judul' => $request->judul,
             'penulis' => $request->penulis,
             'penerbit' => $request->penerbit,
@@ -107,6 +109,7 @@ class BukuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        buku::where('idbuku', $id)->delete();
+        return redirect()->to('administrator')->with('success', 'Berhasil menghapus data');
     }
 }

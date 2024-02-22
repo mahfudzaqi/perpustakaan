@@ -28,10 +28,8 @@ Route::get('/home', function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/administrator', [BukuController::class, 'index'])->middleware('userAkses:administrator');
-    Route::get('/administrator/create', [BukuController::class, 'create'])->middleware('userAkses:administrator');
-    Route::get('administrator/{id}/edit', [BukuController::class, 'edit'])->name('administrator.edit');
-    Route::put('administrator/{id}', [BukuController::class, 'update'])->name('administrator.update');
+    Route::resource('/administrator', BukuController::class)->middleware('userAkses:administrator');
+    Route::patch('administrator/{id}', [BukuController::class, 'update'])->name('administrator.update');
     Route::get('/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
     Route::get('/peminjam', [AdminController::class, 'peminjam'])->middleware('userAkses:peminjam');
     Route::get('/logout', [SesiController::class, 'logout']);
@@ -41,5 +39,3 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 Route::post('/register', [RegisterController::class, 'create'])->name('register');
-
-Route::resource('/administrator', BukuController::class);

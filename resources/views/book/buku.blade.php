@@ -36,7 +36,11 @@
                         <td>{{ $item->tahunterbit }}</td>
                         <td>
                             <a href='{{ url('administrator/'.$item->idBuku.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
-                            <a href='' class="btn btn-danger btn-sm">Del</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus data?')" class="d-inline" action="{{ url('administrator/'.$item->idBuku) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Del</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

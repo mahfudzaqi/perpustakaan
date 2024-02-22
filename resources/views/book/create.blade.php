@@ -4,7 +4,6 @@
     
 <form action='{{ url('administrator') }}' method='post'>
     @csrf
-    @method('put')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">
             <label for="judul" class="col-sm-2 col-form-label">Judul</label>
@@ -32,7 +31,8 @@
         </div>
         <div class="mb-3 row">
             <label for="tahunterbit" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
+            <div class="col-sm-1"><a href="{{ url('administrator') }}" class="btn btn-primary">Back</a></div>
+            <div class="col-sm-1"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
         </div>
     </div>
 </form>
