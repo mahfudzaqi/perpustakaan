@@ -9,9 +9,10 @@
               <button class="btn btn-secondary" type="submit">Cari</button>
           </form>
         </div>
-        
-        <!-- TOMBOL TAMBAH DATA -->
+
+        <!-- TOMBOL TAMBAH DATA & CETAK DATA -->
         <div class="pb-3">
+            <a href='{{ url("administrator/view/pdf") }}' class="btn btn-primary" target="_blank">Cetak Data</a>
           <a href='{{ url("administrator/create") }}' class="btn btn-primary">+ Tambah Data</a>
         </div>
   

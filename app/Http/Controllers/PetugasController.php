@@ -12,7 +12,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $data = buku::orderBy('idBuku', 'asc')->paginate(5);
+        $data = buku::orderBy('idBuku', 'asc')->get();
         return view('buku2.petugas')->with('data', $data);
     }
 

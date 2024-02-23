@@ -10,6 +10,11 @@
           </form>
         </div>
         
+        <!-- TOMBOL CETAK DATA -->
+        <div class="pb-3">
+            <a href='{{ url("petugas/view/pdf") }}' class="btn btn-primary" target="_blank">Cetak Data</a>
+        </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -41,7 +46,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $data->links() }}
     </div>
     <div><a href="/logout" class="btn btn-sm btn-primary">Logout >></a></div>
 @endsection

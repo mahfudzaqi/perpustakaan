@@ -13,7 +13,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $data = Buku::orderBy('idBuku', 'asc')->paginate(3);
+        $data = Buku::orderBy('idBuku', 'asc')->paginate(20);
         return view('book.buku')->with('data', $data);
     }
 
